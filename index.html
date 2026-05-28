@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda - E-commerce Premium</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+</head>
+<body class="bg-light" style="padding-top: 80px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; transition: background-color 0.5s;">
+
+    <nav class="navbar navbar-expand-lg fixed-top bg-white shadow-sm" style="transition: all 0.3s ease; z-index: 1060;">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-3" href="#" onclick="showHome()" style="background: linear-gradient(90deg, #ff416c, #ff4b2b); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                Tienda
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarMain">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark fw-semibold" href="#" onclick="showHome()" onmouseover="this.style.color='#ff416c'" onmouseout="this.style.color=''">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark fw-semibold" href="#" onclick="filterByCategory('All')" onmouseover="this.style.color='#ff416c'" onmouseout="this.style.color=''">Productos</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-dark fw-semibold" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" onmouseover="this.style.color='#ff416c'" onmouseout="this.style.color=''">
+                            Categorías
+                        </a>
+                        <ul class="dropdown-menu border-0 shadow" aria-labelledby="navbarDropdown" style="border-radius: 1rem;">
+                            <li><a class="dropdown-item py-2" href="#" onclick="filterByCategory('Tecnología')">Tecnología</a></li>
+                            <li><a class="dropdown-item py-2" href="#" onclick="filterByCategory('Perfumes')">Perfumes</a></li>
+                            <li><a class="dropdown-item py-2" href="#" onclick="filterByCategory('Otros')">Otros</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="d-flex position-relative">
+                    <i class="bi bi-search position-absolute text-muted" style="top: 50%; left: 15px; transform: translateY(-50%);"></i>
+                    <input class="form-control rounded-pill border-0 bg-light" type="search" id="searchInput" placeholder="Buscar productos..." aria-label="Search" oninput="filterSearch()" style="padding-left: 40px; box-shadow: inset 0 1px 3px rgba(0,0,0,0.1); width: 250px;">
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mb-5">
+        <section id="home-section" class="py-5 text-center" style="display: block; animation: fadeIn 0.5s;">
+            <div class="py-5 my-4">
+                <h1 class="display-1 fw-bolder mb-3" style="background: linear-gradient(135deg, #4A00E0, #8E2DE2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: -2px;">
+                    Tienda
+                </h1>
+                <p class="lead text-muted mx-auto mb-5" style="max-width: 600px; font-size: 1.25rem;">
+                    Descubre nuestra selección premium de productos con diseños increíbles y la más alta calidad. Comprar nunca fue tan rápido, seguro y elegante.
+                </p>
+                <div class="d-flex justify-content-center gap-3">
+                    <button class="btn btn-lg px-5 text-white shadow" onclick="filterByCategory('All')" style="background: linear-gradient(90deg, #4A00E0, #8E2DE2); border-radius: 50px; border: none; transition: all 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 10px 20px rgba(142, 45, 226, 0.4)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='var(--bs-box-shadow)'">
+                        Ver Catálogo
+                    </button>
+                </div>
+            </div>
+
+            <div class="row g-4 mt-5">
+                <div class="col-md-4">
+                    <div class="p-4 bg-white shadow-sm h-100 d-flex flex-column align-items-center justify-content-center" style="border-radius: 1.5rem; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                        <div class="mb-3 d-flex align-items-center justify-content-center bg-light" style="width: 70px; height: 70px; border-radius: 50%;">
+                            <i class="bi bi-box-seam fs-2 text-primary"></i>
+                        </div>
+                        <h4 class="fw-bold">Envío Rápido</h4>
+                        <p class="text-muted mb-0">Entregas exprés en 24/48 horas.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-4 bg-white shadow-sm h-100 d-flex flex-column align-items-center justify-content-center" style="border-radius: 1.5rem; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                        <div class="mb-3 d-flex align-items-center justify-content-center bg-light" style="width: 70px; height: 70px; border-radius: 50%;">
+                            <i class="bi bi-shield-lock fs-2 text-success"></i>
+                        </div>
+                        <h4 class="fw-bold">Pago Seguro</h4>
+                        <p class="text-muted mb-0">Protegidos con encriptación militar.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-4 bg-white shadow-sm h-100 d-flex flex-column align-items-center justify-content-center" style="border-radius: 1.5rem; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                        <div class="mb-3 d-flex align-items-center justify-content-center bg-light" style="width: 70px; height: 70px; border-radius: 50%;">
+                            <i class="bi bi-award fs-2 text-warning"></i>
+                        </div>
+                        <h4 class="fw-bold">Garantía Premium</h4>
+                        <p class="text-muted mb-0">30 días para devoluciones.</p>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="mt-5 pt-4 border-top d-flex flex-column flex-md-row justify-content-between align-items-center text-center text-md-start" style="animation: fadeIn 0.8s;">
+                <div class="mb-3 mb-md-0 d-flex align-items-center justify-content-center">
+                    <span class="fw-bold fs-5 me-2" style="background: linear-gradient(90deg, #ff416c, #ff4b2b); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                        Tienda
+                    </span> 
+                    <span class="text-muted fw-semibold">&copy; 2026 Todos los derechos reservados</span>
+                </div>
+                
+                <div class="text-md-end">
+                    <div class="fw-bold text-dark mb-1"><i class="bi bi-headset me-1 text-primary"></i> Contáctanos</div>
+                    <a href="mailto:contacto@mitienda.com" class="text-muted text-decoration-none" style="transition: color 0.3s ease;" onmouseover="this.style.color='#ff416c'" onmouseout="this.style.color=''">
+                        contacto@mitienda.com
+                    </a>
+                </div>
+            </div>
+            
+        </section>
+
+        <section id="products-section" class="py-4" style="display: none;">
+            <div class="d-flex justify-content-between align-items-end mb-4 border-bottom pb-3">
+                <h2 class="fw-bold mb-0" id="categoryTitle" style="color: #2b2b2b;">Todos los Productos</h2>
+                <span class="text-muted" id="productCount">0 resultados</span>
+            </div>
+
+            <div class="row g-4" id="productGrid"></div>
+            
+            <div id="noResults" class="text-center py-5" style="display: none;">
+                <i class="bi bi-search text-muted" style="font-size: 3rem;"></i>
+                <h4 class="mt-3 fw-bold text-muted">No se encontraron productos</h4>
+            </div>
+        </section>
+    </main>
+
+    <div class="modal fade" id="productDetailModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content border-0" style="padding-top: 80px;"> 
+            <div class="modal-header border-0 bg-white pb-2"> 
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="position: relative; z-index: 10;"></button>
+</div>
+                
+                <div class="modal-body p-4 p-md-5 pt-2 bg-white d-block d-md-flex align-items-md-center justify-content-md-center" style="overflow-y: auto;">
+                    <div class="row align-items-center g-4 g-md-5 w-100" style="max-width: 1400px; margin: 0 auto;">
+                        
+                        <div class="col-12 col-md-5 text-center px-0 px-md-3">
+    <div id="productDetailCarousel" class="carousel slide shadow-sm" data-bs-ride="carousel" style="border-radius: 1.5rem; overflow: hidden; height: 45vh; max-height: 550px; min-height: 320px;">
+        <div class="carousel-inner h-100" id="carouselImagesContainer">
+        </div>
+        
+        <button class="carousel-control-prev" type="button" data-bs-target="#productDetailCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true" style="filter: drop-shadow(0px 0px 4px rgba(0,0,0,0.8));"></span>
+            <span class="visually-hidden">Anterior</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#productDetailCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true" style="filter: drop-shadow(0px 0px 4px rgba(0,0,0,0.8));"></span>
+            <span class="visually-hidden">Siguiente</span>
+        </button>
+    </div>
+    </div>
+                        
+                        <div class="col-12 col-md-4 py-2 py-md-0">
+                            <span id="detailCategory" class="badge bg-dark mb-2" style="padding: 0.5rem 1rem; border-radius: 1rem;"></span>
+                            <h2 id="detailName" class="fw-bolder mb-3 text-dark display-5" style="letter-spacing: -1px;"></h2>
+                            <h5 class="fw-bold text-muted mb-2">Descripción</h5>
+                            <p id="detailDescription" class="text-muted" style="line-height: 1.7; font-size: 1.1rem;"></p>
+                        </div>
+                        
+                        <div class="col-12 col-md-3 text-center d-flex flex-column justify-content-center align-items-center px-4 pt-4 pt-md-0 style-responsive-border">
+                            <div class="text-muted mb-1 fs-5">Precio final</div>
+                            <div id="detailPrice" class="display-4 fw-bold text-dark mb-4"></div>
+                            
+                            <button class="btn btn-lg w-100 text-white shadow" data-bs-toggle="modal" data-bs-target="#checkoutModal" data-bs-dismiss="modal" style="background: linear-gradient(90deg, #ff8a00, #e52e71); border: none; border-radius: 2rem; padding: 1rem; font-weight: 600; font-size: 1.2rem; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)';" onmouseout="this.style.transform='scale(1)';">
+                                <i class="bi bi-cart-check me-2"></i>Comprar
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        @media (min-width: 768px) {
+            .style-responsive-border {
+                border-start: 1px solid #dee2e6; /* Borde izquierdo en escritorio */
+                border-left: 1px solid #dee2e6;
+            }
+        }
+        @media (max-width: 767px) {
+            .style-responsive-border {
+                border-top: 1px solid #dee2e6; /* Borde superior en móvil */
+                padding-top: 2rem !important;
+            }
+        }
+    </style>
+
+    <div class="modal fade" id="checkoutModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content border-0 shadow-lg" style="border-radius: 1.5rem; overflow: hidden;">
+                <div class="modal-header border-0 text-white p-4" style="background: linear-gradient(135deg, #4A00E0, #8E2DE2);">
+                    <h5 class="modal-title fw-bold fs-4"><i class="bi bi-cart-check me-2"></i> Información del Comprador</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4 p-md-5 bg-light">
+                    <form>
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">Nombre Completo</label>
+                                <div class="input-group shadow-sm" style="border-radius: 0.5rem; overflow: hidden;">
+                                    <span class="input-group-text bg-white border-0"><i class="bi bi-person text-muted"></i></span>
+                                    <input type="text" class="form-control border-0" placeholder="Ej. Juan Pérez">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">Correo Electrónico</label>
+                                <div class="input-group shadow-sm" style="border-radius: 0.5rem; overflow: hidden;">
+                                    <span class="input-group-text bg-white border-0"><i class="bi bi-envelope text-muted"></i></span>
+                                    <input type="email" class="form-control border-0" placeholder="correo@ejemplo.com">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label fw-semibold">Teléfono</label>
+                                <div class="input-group shadow-sm" style="border-radius: 0.5rem; overflow: hidden;">
+                                    <span class="input-group-text bg-white border-0 fw-bold text-dark">🇪🇸 +34</span>
+                                    <input type="tel" class="form-control border-0" placeholder="600 000 000">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label fw-semibold">Dirección de Envío</label>
+                                <div class="input-group shadow-sm" style="border-radius: 0.5rem; overflow: hidden;">
+                                    <span class="input-group-text bg-white border-0"><i class="bi bi-geo-alt text-muted"></i></span>
+                                    <input type="text" class="form-control border-0" placeholder="Calle, Número, Ciudad, Código Postal">
+                                </div>
+                            </div>
+                            <div class="col-12 mt-4"><h6 class="fw-bold mb-3 border-bottom pb-2">Método de Pago</h6></div>
+                            <div class="col-12 mt-2">
+                                <label class="form-label fw-semibold">Número de Tarjeta</label>
+                                <div class="input-group shadow-sm" style="border-radius: 0.5rem; overflow: hidden;">
+                                    <span class="input-group-text bg-white border-0"><i class="bi bi-credit-card text-muted"></i></span>
+                                    <input type="text" class="form-control border-0" placeholder="0000 0000 0000 0000">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">Fecha de Expiración</label>
+                                <input type="text" class="form-control border-0 shadow-sm" placeholder="MM/YY" style="border-radius: 0.5rem;">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">CVV</label>
+                                <div class="input-group shadow-sm" style="border-radius: 0.5rem; overflow: hidden;">
+                                    <span class="input-group-text bg-white border-0"><i class="bi bi-lock text-muted"></i></span>
+                                    <input type="text" class="form-control border-0" placeholder="123">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-5">
+                            <button type="button" class="btn btn-lg w-100 text-white shadow" style="background: linear-gradient(90deg, #11998e, #38ef7d); border: none; border-radius: 1rem; font-weight: bold; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.02)'; this.style.boxShadow='0 10px 20px rgba(56, 239, 125, 0.4)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='var(--bs-box-shadow)'" data-bs-dismiss="modal">
+                                Realizar pedido
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // 1. BASE DE DATOS DE PRODUCTOS (Modificada con propiedad 'descripcion')
+        const productos = [
+            {
+                id: 1,
+                nombre: "Smartphone Pro XR",
+                categoria: "Tecnología",
+                imagen: "./Prueba1.png" ,
+                galeria: [
+            "./Prueba1.png", 
+            "https://placehold.co/600x500/2b2b2b/ffffff?text=Lateral", 
+            "https://placehold.co/600x500/2b2b2b/ffffff?text=Trasera"
+        ],
+                precio: "558,00 €",
+                colores: ["#2b2b2b", "#e0e0e0", "#8c92ac"],
+                descripcion: "El nuevo Smartphone Pro XR redefine los límites de la tecnología. Con un procesador de última generación, pantalla OLED de altísima resolución y un sistema de cámaras profesionales que capturan hasta el más mínimo detalle en condiciones de poca luz."
+            },
+            {
+                id: 2,
+                nombre: "Eau de Parfum Elegance",
+                categoria: "Perfumes",
+                imagen: "./Prueba2.png",
+                galeria: [
+            "./Prueba2.png", 
+            "https://placehold.co/600x500/2b2b2b/ffffff?text=Lateral", 
+            "https://placehold.co/600x500/2b2b2b/ffffff?text=Trasera"
+        ],
+                precio: "89,95 €",
+                colores: ["#ffd700"],
+                descripcion: "Una fragancia sofisticada y atemporal diseñada para dejar huella. Notas de salida cítricas, un corazón floral intenso y un fondo de maderas nobles y ámbar. Ideal para eventos nocturnos y ocasiones verdaderamente especiales."
+            },
+            {
+                id: 3,
+                nombre: "Laptop Ultrabook X",
+                categoria: "Tecnología",
+                imagen: "./Prueba3.png",
+                galeria: [
+            "./Prueba3.png", 
+            "https://placehold.co/600x500/2b2b2b/ffffff?text=Lateral", 
+            "https://placehold.co/600x500/2b2b2b/ffffff?text=Trasera"
+        ],
+                precio: "1250,00 €",
+                colores: ["#c0c0c0", "#444444"],
+                descripcion: "Máxima potencia en un diseño ultraligero. Construido en una aleación de aluminio aeroespacial, este equipo ofrece hasta 18 horas de autonomía, teclado retroiluminado y un rendimiento fluido para diseño gráfico y programación."
+            },
+            {
+                id: 4,
+                nombre: "Reloj Clásico Minimal",
+                categoria: "Otros",
+                imagen: "https://placehold.co/600x500/f8f9fa/343a40?text=Reloj",
+                galeria: [
+            "https://placehold.co/600x500/2b2b2b/ffffff?text=Delantera", 
+            "https://placehold.co/600x500/2b2b2b/ffffff?text=Lateral", 
+            "https://placehold.co/600x500/2b2b2b/ffffff?text=Trasera"
+        ],
+                precio: "185,50 €",
+                colores: ["#8b4513", "#000000"],
+                descripcion: "La esencia del minimalismo en tu muñeca. Fabricado con acero inoxidable 316L, cristal de zafiro resistente a arañazos y una elegante correa de cuero italiano genuino. Resistente al agua hasta 5 ATM."
+            },
+            {
+                id: 5,
+                nombre: "Auriculares Sound Max",
+                categoria: "Tecnología",
+                imagen: "https://placehold.co/600x500/f8f9fa/343a40?text=Auriculares",
+                galeria: [
+            "https://placehold.co/600x500/2b2b2b/ffffff?text=Delantera", 
+            "https://placehold.co/600x500/2b2b2b/ffffff?text=Lateral", 
+            "https://placehold.co/600x500/2b2b2b/ffffff?text=Trasera"
+        ],
+                precio: "249,00 €",
+                colores: ["#ffffff", "#000000"],
+                descripcion: "Sumérgete en tu música con la mejor cancelación activa de ruido del mercado. Almohadillas de espuma viscoelástica para una comodidad inigualable y ecualización dinámica controlada mediante nuestra app exclusiva."
+            },
+            {
+                id: 6,
+                nombre: "Gafas de Sol Aviador",
+                categoria: "Otros",
+                imagen: "https://placehold.co/600x500/f8f9fa/343a40?text=Gafas",
+                galeria: [
+            "https://placehold.co/600x500/2b2b2b/ffffff?text=Delantera", 
+            "https://placehold.co/600x500/2b2b2b/ffffff?text=Lateral", 
+            "https://placehold.co/600x500/2b2b2b/ffffff?text=Trasera"
+        ],
+                precio: "110,00 €",
+                colores: ["#333333"],
+                descripcion: "Un diseño icónico que nunca pasa de moda. Montura de metal ultraligera y lentes polarizadas con protección 100% UV400. Incluyen estuche rígido de piel y paño de microfibra para su cuidado."
+            }
+        ];
+
+        // 2. ELEMENTOS DEL DOM
+        const homeSection = document.getElementById('home-section');
+        const productsSection = document.getElementById('products-section');
+        const categoryTitle = document.getElementById('categoryTitle');
+        const productGrid = document.getElementById('productGrid');
+        const searchInput = document.getElementById('searchInput');
+        const productCount = document.getElementById('productCount');
+        const noResults = document.getElementById('noResults');
+        let modalDetalle; // Instancia global para el modal de detalles
+
+        // 3. FUNCIÓN PARA RENDERIZAR PRODUCTOS
+        function renderProductos(listaProductos) {
+            productGrid.innerHTML = ''; 
+
+            if (listaProductos.length === 0) {
+                noResults.style.display = 'block';
+            } else {
+                noResults.style.display = 'none';
+                
+                listaProductos.forEach(prod => {
+                    const coloresHtml = prod.colores.map(color => 
+                        `<span style="width: 18px; height: 18px; border-radius: 50%; background-color: ${color}; cursor: pointer; border: 2px solid white; outline: 1px solid #ccc;"></span>`
+                    ).join('');
+
+                    // MODIFICACIÓN CRÍTICA: Se añadió onclick="abrirDetalle(...)" a la tarjeta
+                    // Y onclick="event.stopPropagation()" al botón Comprar
+                    const tarjetaHtml = `
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card h-100 border-0 shadow bg-white" 
+                                 style="border-radius: 1.5rem; transition: all 0.4s ease; overflow: hidden; cursor: pointer;" 
+                                 onclick="abrirDetalle(${prod.id})" 
+                                 onmouseover="this.style.transform='translateY(-10px)'; this.classList.replace('shadow', 'shadow-lg');" 
+                                 onmouseout="this.style.transform='translateY(0)'; this.classList.replace('shadow-lg', 'shadow');">
+                                <div class="position-relative">
+                                    <img src="${prod.imagen}" class="card-img-top" alt="${prod.nombre}" style="border-top-left-radius: 1.5rem; border-top-right-radius: 1.5rem; object-fit: cover; height: 250px;">
+                                    <span class="badge bg-dark position-absolute" style="top: 15px; right: 15px; border-radius: 1rem; padding: 0.5rem 1rem;">${prod.categoria}</span>
+                                </div>
+                                <div class="card-body p-4 d-flex flex-column">
+                                    <div class="d-flex gap-2 mb-3">
+                                        ${coloresHtml}
+                                    </div>
+                                    <h5 class="card-title fw-bold mb-1">${prod.nombre}</h5>
+                                    
+                                    <div class="mt-auto">
+                                        <div class="fs-3 fw-bold text-dark mb-3">${prod.precio}</div>
+                                        <button class="btn w-100 text-white" 
+                                                data-bs-toggle="modal" 
+                                                data-bs-target="#checkoutModal" 
+                                                onclick="event.stopPropagation();" 
+                                                style="background: linear-gradient(90deg, #ff8a00, #e52e71); border: none; border-radius: 2rem; padding: 0.75rem; font-weight: 600; transition: all 0.3s ease;" 
+                                                onmouseover="this.style.transform='scale(1.04)'; this.style.boxShadow='0 8px 15px rgba(229, 46, 113, 0.4)';" 
+                                                onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';">
+                                            Comprar Ahora
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    productGrid.innerHTML += tarjetaHtml;
+                });
+            }
+            productCount.textContent = listaProductos.length + (listaProductos.length === 1 ? ' resultado' : ' resultados');
+        }
+
+        
+        // 4. NUEVA FUNCIONALIDAD: ABRIR DETALLE
+        function abrirDetalle(idProducto) {
+            const prod = productos.find(p => p.id === idProducto);
+    
+            if(prod) {
+                // --- NUEVA LÓGICA DEL CARRUSEL ---
+                const carouselContainer = document.getElementById('carouselImagesContainer');
+                carouselContainer.innerHTML = ''; // Limpiar fotos del producto anterior
+                
+                // Si el producto no tiene galería configurada, usamos su imagen principal
+                const imagenes = prod.galeria || [prod.imagen];
+
+                // Crear las imágenes del carrusel dinámicamente
+                imagenes.forEach((imgUrl, index) => {
+                    const activeClass = index === 0 ? 'active' : ''; // Solo la primera foto es 'active'
+                    carouselContainer.innerHTML += `
+                        <div class="carousel-item ${activeClass} h-100">
+                            <img src="${imgUrl}" class="d-block w-100 h-100" alt="${prod.nombre}" style="object-fit: cover;">
+                        </div>
+                    `;
+        });
+        // ---------------------------------
+
+        // Rellenar resto de datos en el modal
+        document.getElementById('detailName').textContent = prod.nombre;
+        document.getElementById('detailCategory').textContent = prod.categoria;
+        document.getElementById('detailDescription').textContent = prod.descripcion;
+        document.getElementById('detailPrice').textContent = prod.precio;
+        
+        // Mostrar modal
+        if (!modalDetalle) {
+    modalDetalle = new bootstrap.Modal(document.getElementById('productDetailModal'), {
+        focus: false // <-- Esto permite interactuar con la barra de búsqueda del header
+    });
+}
+modalDetalle.show();
+    }
+}
+
+        // 5. FUNCIONES DE NAVEGACIÓN Y FILTRADO (Originales)
+        function showHome() {
+            if (modalDetalle) modalDetalle.hide(); // Cierra el detalle si estaba abierto
+            homeSection.style.display = 'block';
+            productsSection.style.display = 'none';
+            searchInput.value = '';
+            homeSection.style.opacity = '0';
+            setTimeout(() => { homeSection.style.transition = 'opacity 0.5s'; homeSection.style.opacity = '1'; }, 10);
+        }
+
+        function filterByCategory(categoria) {
+            if (modalDetalle) modalDetalle.hide(); // Cierra el detalle si estaba abierto
+            homeSection.style.display = 'none';
+            productsSection.style.display = 'block';
+            searchInput.value = ''; 
+            
+            productsSection.style.opacity = '0';
+            setTimeout(() => { productsSection.style.transition = 'opacity 0.5s'; productsSection.style.opacity = '1'; }, 10);
+
+            categoryTitle.textContent = categoria === 'All' ? 'Todos los Productos' : categoria;
+            
+            const filtrados = categoria === 'All' 
+                ? productos 
+                : productos.filter(p => p.categoria === categoria);
+                
+            renderProductos(filtrados);
+        }
+
+        function filterSearch() {
+            if (modalDetalle) modalDetalle.hide(); // Cierra el detalle si estaba abierto
+            const searchTerm = searchInput.value.toLowerCase().trim();
+            
+            if (homeSection.style.display === 'block' && searchTerm.length > 0) {
+                homeSection.style.display = 'none';
+                productsSection.style.display = 'block';
+            }
+
+            categoryTitle.textContent = 'Resultados de búsqueda';
+            
+            const filtrados = productos.filter(p => p.nombre.toLowerCase().includes(searchTerm));
+            renderProductos(filtrados);
+        }
+
+        // 6. INICIALIZAR
+        renderProductos(productos);
+
+    </script>
+</body>
+</html>
